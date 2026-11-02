@@ -1,115 +1,56 @@
 // 파이썬과학 암기카드 (문제은행과 별개). q=앞면, k=코드, a=뒷면 정답, e=보충 설명
 (window.CARDS = window.CARDS || {}).py = [
-  // ── 1장 언어와 파이썬 소개 ──
-  {c:1,q:"파이썬의 특징 4가지는?",a:"플랫폼 독립 · 객체지향 · 인터프리터 · 동적 타이핑",e:"1990년 귀도 반 로섬."},
-  {c:1,q:"실행 전에 전체를 기계어로 번역해 빠르지만 메모리를 많이 쓰는 언어 처리 방식은?",a:"컴파일러 방식",e:"C, Java, C++, C#."},
-  {c:1,q:"실행 시점에 한 줄씩 해석해 간단하지만 느린 언어 처리 방식은?",a:"인터프리터 방식",e:"파이썬, R."},
+  // ── 16강 함수: **kwargs · import · __main__ ──
+  {c:16,q:"함수 매개변수에 **가 붙으면(**kwargs) 호출할 때 준 인수는 어떤 형태로 전달되나요?",a:"이름=값 인수들이 딕셔너리로 모여 전달된다 (키 = 인수 이름)",e:"키워드 가변 인수(keyword variable length argument)."},
+  {c:16,q:"*arg와 **kwarg로 받은 값의 자료형 차이는?",a:"*arg → 튜플 / **kwarg → 딕셔너리",e:"def fcnarg4(arg1, *arg2, **arg3) 순서."},
+  {c:16,q:"딕셔너리·리스트·튜플을 만드는 괄호 기호는?",a:"딕셔너리 { } (key:value) · 리스트 [ ] · 튜플 ( )",e:"딕셔너리는 키와 값을 콜론(:)으로 대응시킨다."},
+  {c:16,q:"이 코드의 첫 번째 출력 줄은?",k:`def fcnarg3(x, **kwargs):
+    print(x, kwargs)
 
-  // ── 2장 설치 ──
-  {c:2,q:"파이썬과 필요한 패키지·프로그램을 묶어 둔 배포판은?",a:"아나콘다",e:"업데이트: conda update anaconda."},
-  {c:2,q:"웹브라우저(localhost:8888)에서 코드를 실행하는 노트북 환경은?",a:"Jupyter Notebook",e:""},
-  {c:2,q:"아나콘다에 포함된 통합개발환경(IDE)은?",a:"Spyder",e:""},
+fcnarg3(0, first=1, second=2, third=3)`,a:"0 {'first': 1, 'second': 2, 'third': 3}",e:"x에는 0, 나머지 이름=값은 kwargs 딕셔너리."},
+  {c:16,q:"print(fcnarg3(0, first=1, ...))를 하면 마지막에 None이 찍히는 이유는?",a:"함수에 return이 없어 반환값이 없기 때문 — 바깥 print가 None을 출력",e:"오류가 아니다."},
+  {c:16,q:"이 코드의 출력은?",k:`def fcnarg4(arg1, *arg2, **arg3):
+    print("arg1 :", arg1)
+    print("arg2 :", arg2)
+    print("arg3 :", arg3)
 
-  // ── 3장 변수와 자료형 ──
-  {c:3,q:"변수명에 쓸 수 없는 것은?",a:"특수문자(_ 제외) · 마침표 · 예약어",e:"문자로 시작, 대소문자 구분."},
-  {c:3,q:"파이썬의 기본 자료형 4가지는?",a:"정수 · 실수 · 문자 · 논리",e:""},
-  {c:3,q:"논리형 True와 False를 숫자로 보면?",a:"True = 1, False = 0",e:""},
+fcnarg4(0, 2, 4, 8, t1=1, t2=3, t3=4, name="johnson")`,a:"arg1 : 0\narg2 : (2, 4, 8)\narg3 : {'t1': 1, 't2': 3, 't3': 4, 'name': 'johnson'}",e:"위치 인수 나머지는 튜플, 이름=값은 딕셔너리."},
+  {c:16,q:"이 코드로 만들어지는 filename은?",k:`date_info = {'year': "2020", 'month': "01", 'day': "01"}
+filename = "{year}-{month}-{day}.txt".format(**date_info)`,a:"'2020-01-01.txt'",e:"**date_info가 year=, month=, day= 인수로 풀려 전달된다."},
+  {c:16,q:"다른 .py 파일(trapezium_def.py)의 함수를 불러와 쓰는 명령과 별칭 붙이는 법은?",a:"import trapezium_def as ta → ta.addition(5, 10)",e:"as를 생략하면 trapezium_def.addition처럼 매번 전체 이름을 써야 한다."},
+  {c:16,q:"import trapezium_def as ta 후 ta.addition(5,10) / ta.multiplication(5,10) / ta.divided_by_2(11)의 값은?",a:"15 / 50 / 5.5",e:"합, 곱, 2로 나누기 함수."},
+  {c:16,q:"if __name__ == '__main__': 구문의 의미는?",a:"‘이 프로그램이 직접 실행될 때’ — import 당할 때는 실행되지 않는다",e:"import 시 필요 없는 계산·print를 이 안에 넣는다."},
+  {c:16,q:"trapezium_area.py를 import 하면 15 50 25.0이 출력되지 않는 이유는?",a:"print 문이 if __name__ == '__main__': 안에 있어서, import 때는 실행되지 않기 때문",e:"직접 실행하면 15, 50, 25.0 출력."},
+  {c:16,q:"실행 코드를 main() 함수로 묶는 관례를 쓰는 형태는?",k:`def main():
+    ...
 
-  // ── 4장 산술연산과 형변환 ──
-  {c:4,q:"a=10, b=3일 때 각 식의 값은?",k:`a / b
-7 // 2
-7 % 2
-3 ** 5`,a:"3.3333333333333335, 3, 1, 243",e:"/ 는 실수 나눗셈, // 몫, % 나머지, ** 거듭제곱."},
-  {c:4,q:"int(10.7)의 값과 이유는?",k:`int(10.7)`,a:"10 — 반올림이 아니라 소수점 아래를 버린다",e:"float('1.12e-2') + 3 = 3.0112, int('10') + 3 = 13."},
-  {c:4,q:"문자와 숫자를 더하면 어떻게 되나요? 해결법은?",k:`a = '1.23e-3'
-b = 10
-a + str(b)`,a:"문자열 + 숫자는 TypeError. str(b)로 바꾸면 문자열 이어 붙이기가 되어 '1.23e-310'",e:"형변환 함수: int(), float(), str()."},
+if __name__ == "__main__":
+    main()`,a:"함수들을 정의한 뒤 맨 아래에서 __main__ 일 때만 main()을 호출",e:"import 해도 main()은 실행되지 않고 함수만 가져다 쓸 수 있다."},
+  {c:16,q:"사다리꼴 넓이 프로그램 공식과 밑변 20·윗변 10·높이 3의 결과는?",k:`divided_by_2(addition(base_line, upper_edge)) * height`,a:"(밑변 + 윗변) ÷ 2 × 높이 = 45.0",e:"(20+10)/2*3 = 45.0, input()은 float()로 변환해 사용."},
 
-  // ── 5장 화면 입출력 ──
-  {c:5,q:"input()이 돌려주는 자료형과 주의점은?",k:`n = input("숫자: ")
-n * 2`,a:"항상 문자열 — 계산하려면 int()로 변환해야 한다. 위 코드는 숫자 2배가 아니라 문자열 두 번 반복",e:"예: 화씨 = 섭씨 × 1.8 + 32 (섭씨 32 → 89.6)."},
-  {c:5,q:"이 코드가 출력하는 것은?",k:`from datetime import date
-date.today().strftime("%Y")`,a:"올해 연도를 네 자리 문자열로(예: '2026')",e:"%m 월, %d 일. CLI = 텍스트 명령, GUI = 그래픽 화면."},
-
-  // ── 6장 리스트 ──
-  {c:6,q:"각 슬라이싱의 결과는?",k:`colors = ['r','o','y','g','b','n','p']
-colors[0:100:2]
-colors[::-1]`,a:"['r','y','b','p'] (0,2,4,6번째), 전체를 거꾸로한 리스트",e:"[start:end]는 end 미포함이고 범위를 넘어도 에러가 나지 않는다."},
-  {c:6,q:"리스트 맨 뒤에 값 하나를 추가하는 메서드는?",a:"append",e:""},
-  {c:6,q:"리스트에 다른 리스트를 이어 붙이는 메서드는?",a:"extend",e:""},
-  {c:6,q:"리스트의 지정한 위치에 값을 넣는 메서드는?",a:"insert(위치, 값)",e:""},
-  {c:6,q:"리스트에서 값을 찾아 지우는 메서드는?",a:"remove(값)",e:""},
-  {c:6,q:"리스트의 인덱스나 구간을 삭제하는 키워드는?",a:"del",e:""},
-  {c:6,q:"리스트 언패킹에서 변수 수가 원소 수와 다르면?",k:`a, b, c = [1, 2]`,a:"ValueError — 변수가 많으면 not enough values, 적으면 too many values",e:"언패킹은 원소 수와 변수 수가 같아야 한다."},
-
-  // ── 7장 2차원 리스트와 메모리 ──
-  {c:7,q:"파이썬의 2차원 리스트는 1차원 리스트를 무엇별로 쌓은 것인가?",a:"행(row)별",e:"R은 열별."},
-  {c:7,q:"b = a 뒤 a.sort()를 하면 b는 어떻게 되나요? 이유는?",k:`a = [3, 1, 2]
-b = a
-a.sort()`,a:"b도 [1, 2, 3]으로 정렬된다 — 두 변수가 같은 리스트(같은 주소)를 가리킨다",e:"복사하려면 b = a.copy() 또는 a[:]."},
-  {c:7,q:"is와 ==의 차이는? 아래 결과는?",k:`a = 1000
-b = 1000
-a is b
-a == b`,a:"is = 주소 비교, == = 값 비교. 프롬프트에서 a is b는 False, a == b는 True",e:"−5 ~ 256 정수는 미리 만들어 둬서 값이 같으면 주소도 같다."},
-
-  // ── 8장 조건문 ──
-  {c:8,q:"if 문 문법에서 꼭 필요한 것은?",k:`if x > 5:
-    print(x)`,a:"조건 뒤의 콜론(:)과 블록의 들여쓰기 (조건에 괄호는 불필요)",e:"한 블록 안의 들여쓰기는 모두 같아야 한다."},
-  {c:8,q:"x = 5일 때 두 코드의 출력 차이는?",k:`# (가)
-if (x > 5):
-    print(x)
-print("bye")
-
-# (나)
-if (x > 5):
-    print(x)
-    print("bye")`,a:"(가) bye 출력 — print(\"bye\")가 if 밖이라 항상 실행, (나) 아무것도 출력 안 함 — bye가 if 블록 안",e:"들여쓰기가 블록을 결정한다."},
-  {c:8,q:"둘 다 True여야 True인 논리 연산자는?",a:"and",e:""},
-  {c:8,q:"둘 다 False일 때만 False인 논리 연산자는?",a:"or",e:"not은 반대."},
-
-  // ── 9장 elif와 for ──
-  {c:9,q:"점수에 따라 등급을 매길 때 if를 독립적으로 나열하면 생기는 문제는?",k:`if score >= 90: grade = "A"
-if score >= 80: grade = "B"
-if score >= 70: grade = "C"`,a:"90점이 A → B → C로 계속 덮어써진다. elif로 이어서 하나만 선택되게 해야 한다",e:"elif는 앞 조건이 거짓일 때만 검사."},
-  {c:9,q:"range(start, end, step)의 규칙과 예시는?",k:`list(range(10, 0, -2))`,a:"end는 포함하지 않는다. 결과: [10, 8, 6, 4, 2]",e:"1~n의 합은 range(1, n+1) (n=10이면 55)."},
-  {c:9,q:"for 문으로 문자열을 순회하면 무엇이 변수에 담기나요?",k:`for char in 'abcdef':
-    print(char)`,a:"문자 하나씩 'a', 'b', … 가 차례로 담긴다",e:"반복문 안에 반복문을 넣는 중첩도 가능하다(구구단)."},
-
-  // ── 10장 while과 반복 제어 ──
-  {c:10,q:"while 문에서 증가식을 빼먹으면 어떻게 되나요?",k:`i = 1
-while i <= 10:
-    print(i)`,a:"조건이 영원히 참이라 무한 반복 — Ctrl+C로 중단한다",e:"while은 조건이 참인 동안 반복."},
-  {c:10,q:"반복에서 아래 코드를 건너뛰고 다음 반복으로 넘어가는 키워드는?",a:"continue",e:""},
-  {c:10,q:"반복을 즉시 중단하는 키워드는?",a:"break",e:""},
-  {c:10,q:"for-else에서 else는 언제 실행되나요? 이 코드의 출력은?",k:`for i in range(10):
-    if i % 2 == 1:
-        print("for loop broken!!")
-        break
-    print(i)
-else:
-    print("for loop completed!!")`,a:"else는 break 없이 반복이 끝났을 때만 실행. 이 코드는 0, 이어서 'for loop broken!!'을 출력하고 else는 실행되지 않는다",e:"i=1에서 break가 일어나므로 completed는 출력되지 않는다."},
-
-  // ── 11장 사용 예제 ──
-  {c:11,q:"문자열을 거꾸로 만드는 핵심 한 줄은?",k:`rsentence = char + rsentence`,a:"새 문자를 앞에 붙이면서 순회하면 역순이 된다. 공백은 continue로 건너뛰어 ‘Hello World’ → ‘dlroWolleH’",e:"rsentence는 빈 문자열에서 시작."},
-  {c:11,q:"십진수를 이진수로 바꿀 때 2로 나눈 나머지를 읽는 순서는?",a:"역순",e:"10 → 1010, 12 → 1100."},
-  {c:11,q:"0을 입력하면 끝나고 잘못된 입력은 다시 받는 반복 구조는?",k:`while True:
-    try:
-        n = int(input())
-    except ValueError:
-        continue
-    if n == 0:
-        break`,a:"while True로 무한 반복하면서 0이면 break, 잘못된 입력은 try-except로 잡아 continue",e:"int('12.3')은 ValueError."},
-
-  // ── 12장 평균과 디버깅 ──
-  {c:12,q:"정의되지 않은 변수나 오탈자(pront), 대소문자 차이 때문에 나는 오류는?",a:"NameError",e:""},
-  {c:12,q:"불필요한 들여쓰기 때문에 나는 오류는?",a:"IndentationError",e:"debugging = de(없앤다) + bug."},
-
-  // ── 13장 함수 기초 ──
-  {c:13,q:"함수를 쓰는 장점 3가지는?",a:"필요할 때 호출 · 논리적 단위 분할 · 캡슐(모듈)화",e:""},
-  {c:13,q:"함수 4형태 중 매개변수 O · 반환값 O인 것은?",a:"dd",e:"aa 매개X 반환X · bb 매개O 반환X · cc 매개X 반환O."},
-  {c:13,q:"함수 4형태 중 매개변수 X · 반환값 O인 것은?",a:"cc",e:""},
-  {c:13,q:"f(x)=x+1, g(x)=x²일 때 f(g(5))는?",a:"26",e:"g(5)=25 → f(25)=26."},
-  {c:13,q:"f(x)=x+1, g(x)=x²일 때 g(f(5))는?",a:"36",e:"f(5)=6 → g(6)=36."},
-  {c:13,q:"diag_len(4, 3)이 5.0인 이유는?",k:`def diag_len(a, b):
-    return (a**2 + b**2) ** 0.5`,a:"피타고라스 정리: √(4² + 3²) = √25 = 5.0 — 0.5 제곱은 제곱근이며 결과가 실수라 5.0",e:"정수가 아니라 5.0으로 나온다."}
+  // ── 17강 문자열 ──
+  {c:17,q:"문자열은 어떤 자료형(종류)이고, 어떻게 표시하나요?",a:"시퀀스 자료형 — 큰따옴표 또는 작은따옴표로 표시",e:"각 문자가 원소라 리스트처럼 인덱싱·슬라이싱 가능."},
+  {c:17,q:"ASCII는 한 문자를 몇 bits로 저장하며 무엇을 표현하나요? 한계는?",a:"7bits — 영문자·숫자·특수문자 / 로마자가 아닌 문자는 표현 불가",e:"American Standard Code for Information Interchange."},
+  {c:17,q:"한국·중국·일본 문자 표현에 쓰인 인코딩은?",a:"EUC (Extended Unix Code) — euc-kr, euc-cn, euc-jp",e:""},
+  {c:17,q:"전세계 문자를 하나의 인코딩으로 쓰기 위해 나온 방식과 장점은?",a:"UTF-8 — 어느 문자의 인코딩인지 따로 설정할 필요가 없다",e:"슬라이드 표기: 최대 8bytes (실제 규격은 최대 4바이트). MS Windows는 CP949 사용, 개개의 파일은 UTF-8이 많다."},
+  {c:17,q:"'Hello'의 양수 인덱스와 음수 인덱스는?",a:"H=0 e=1 l=2 l=3 o=4 / H=−5 e=−4 l=−3 l=−2 o=−1",e:"음수 인덱스는 뒤에서부터 −1."},
+  {c:17,q:"출력은?",k:`mystr0 = '0123456789'
+print(mystr0[0], mystr0[2:4], mystr0[9])
+print(mystr0[-1:-11:-1])`,a:"0 23 9\n9876543210",e:"[2:4]는 끝 인덱스 미포함. [-1:-11:-1]은 역순 전체."},
+  {c:17,q:"출력은? (한글도 한 글자가 원소 하나)",k:`mystr2 = '안녕하세요? 내 문자열입니다'
+print(mystr2[0], mystr2[2:4], mystr2[9])`,a:"안 하세 문",e:"[0]='안', [2:4]='하세', [9]='문'."},
+  {c:17,q:"문자열 연산자 +, *, in의 역할은?",a:"+ 합치기(연결) · * 반복 · in 특정 문자열이 있는지 확인",e:"'Hello' * 3 = 'HelloHelloHello'."},
+  {c:17,q:"줄바꿈·탭·backspace·역슬래시 자체를 나타내는 이스케이프는?",a:"\\n · \\t · \\b · \\\\",e:"\\\" 큰따옴표, \\' 작은따옴표, \\f 새 페이지, \\r carriage return, \\v vertical tab."},
+  {c:17,q:"\\xFF 형태의 이스케이프는 무엇을 나타내나요?",a:"16진수 FF(00~FF)에 해당하는 문자",e:"예: \"\\x22\" = 큰따옴표(\")."},
+  {c:17,q:"len(str) / upper() / lower()의 기능은?",a:"길이 반환 / 대문자로 / 소문자로",e:""},
+  {c:17,q:"title()과 capitalize()의 차이는?",a:"title() 각 단어의 첫 글자를 대문자로 / capitalize() 문자열의 첫 문자만 대문자로",e:"'hello world'.title() = 'Hello World', .capitalize() = 'Hello world'."},
+  {c:17,q:"앞에 공백이 있는 문자열에 capitalize()를 하면?",k:`'  hello. This is my string '.capitalize()`,a:"'  hello. this is my string ' — 첫 문자가 공백이라 h는 그대로, 나머지는 소문자",e:"title()은 '  Hello. This Is My String '."},
+  {c:17,q:"strip() / lstrip() / rstrip()의 차이는?",a:"strip 양쪽 빈칸 삭제 · lstrip 시작(왼쪽)만 · rstrip 끝(오른쪽)만",e:"mystr 길이 27 → strip 24, lstrip 25, rstrip 26."},
+  {c:17,q:"islower() / isupper() / isdigit()의 기능은?",a:"소문자인지 / 대문자인지 / 숫자인지 판정 (True/False)",e:""},
+  {c:17,q:"split(sep)의 기능과 sep를 생략했을 때는?",a:"sep 기준으로 문자열을 나눠 리스트로 만든다 / 생략하면 빈칸 기준",e:"'a,b,c'.split(',') = ['a','b','c']."},
+  {c:17,q:"split()과 split(' ')의 결과 차이는?",k:`mystr = '  hello. This is my string '
+mystr.split()
+mystr.split(' ')`,a:"['hello.', 'This', 'is', 'my', 'string']\n['', '', 'hello.', 'This', 'is', 'my', 'string', '']",e:"split(' ')은 공백 하나하나로 자르므로 빈 문자열이 생긴다."},
+  {c:17,q:"count(str) / find(str) / rfind(str)의 차이는?",a:"count 몇 번 있는지 · find 왼쪽부터 처음 위치 · rfind 오른쪽부터 처음 위치",e:"'  hello. This is my string ' → count('is')=2, find=11, rfind=14."},
+  {c:17,q:"startswith(str)와 endswith(str)의 기능은?",a:"str로 문자열이 시작하는지 / 끝나는지 확인 (True/False)",e:""}
 ];

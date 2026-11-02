@@ -1,4 +1,4 @@
-<title>중간고사 퀴즈</title>
+<title>기말고사 퀴즈</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -237,7 +237,7 @@ window.BANK = [];
 /*@@DATA@@*/
 <script>
 // ────────────────────────────────────────────────
-// 중간고사 퀴즈 — 과목·챕터별로 골라 푸는 모바일 퀴즈
+// 기말고사 퀴즈 — 과목·챕터별로 골라 푸는 모바일 퀴즈
 // 기록은 이 기기(localStorage)에 바로 저장하고, claude.ai에 로그인돼 있으면
 // db 개인 영역에도 저장해 폰과 PC가 같은 기록을 본다.
 // ────────────────────────────────────────────────
@@ -245,7 +245,7 @@ window.BANK = [];
   "use strict";
 
   const TYPE = { ox: "OX", mc: "객관식", sa: "단답형", bl: "빈칸" };
-  const SRC_LABEL = { "퀴즈": "수업 퀴즈", "요약정리": "요약정리 예상문제", "강의": "강의 확인문제", "기출": "중간고사 기출", "추가": "추가 문제" };
+  const SRC_LABEL = { "퀴즈": "수업 퀴즈", "요약정리": "요약정리 예상문제", "강의": "강의 확인문제", "기출": "기말고사 기출", "추가": "추가 문제" };
   const ORDER = ["ca", "ai", "bd", "ds", "py"];
   const DEFAULT_EXAM = "2026-10-26";
   const LS_KEY = "midterm-quiz-v2";
@@ -404,7 +404,7 @@ window.BANK = [];
 
   // 홈 — 과목 목록
   function renderHome() {
-    let h = '<div class="bar"><h1>중간고사 퀴즈</h1></div><div class="stack">';
+    let h = '<div class="bar"><h1>기말고사 퀴즈</h1></div><div class="stack">';
     let allWrong = 0;
     IDS.forEach(function (id) {
       const b = SUBJ[id], st = stats(b.qs);

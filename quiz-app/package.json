@@ -1,8 +1,8 @@
 {
-  "name": "midterm-quiz",
+  "name": "final-quiz",
   "version": "1.0.0",
   "private": true,
-  "description": "중간고사 대비 모바일 퀴즈 웹앱",
+  "description": "기말고사 대비 모바일 퀴즈 웹앱",
   "scripts": {
     "dev": "python -u tools/dev.py",
     "build": "python build.py"

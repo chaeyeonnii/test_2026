@@ -26,7 +26,7 @@ function readCookie(request, name) {
 function loginPage(message) {
   const html = `<!doctype html><html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>중간고사 퀴즈</title>
+<title>기말고사 퀴즈</title>
 <style>
 :root{--bg:#f4f6fa;--card:#fff;--text:#1c2230;--sub:#687083;--line:#e2e6ee;--primary:#3d6df2;--ng:#e5484d}
 @media (prefers-color-scheme:dark){:root{--bg:#12151b;--card:#1b1f27;--text:#e9ecf2;--sub:#9aa2b2;--line:#2c3240;--primary:#6b8ff7;--ng:#ff6b6f;color-scheme:dark}}
@@ -40,7 +40,7 @@ button{font:inherit;font-size:16px;font-weight:700;height:50px;border:0;border-r
 .err{color:var(--ng);font-size:14px}
 </style></head><body>
 <form method="post" action="${LOGIN_PATH}">
-<h1>중간고사 퀴즈</h1><p>비밀번호를 입력하세요.</p>
+<h1>기말고사 퀴즈</h1><p>비밀번호를 입력하세요.</p>
 <label for="pw" style="position:absolute;left:-9999px">비밀번호</label>
 <input id="pw" name="password" type="password" inputmode="numeric" autocomplete="current-password" autofocus required>
 ${message ? `<span class="err">${message}</span>` : ""}
